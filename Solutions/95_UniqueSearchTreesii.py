@@ -14,6 +14,7 @@ class TreeNode(object):
 
 class Solution(object):
     mem = {}
+
     def generateTrees(self, n):
         """
         用来枚举1-n的所有二叉搜索树
@@ -28,9 +29,9 @@ class Solution(object):
         if start > end:
             return [None]
         res = []
-        for root_val in range(start, end+1):
+        for root_val in range(start, end + 1):
             left_tree = self.dfs(start, root_val - 1)
-            right_tree = self.dfs(root_val+1, end)
+            right_tree = self.dfs(root_val + 1, end)
             for i in left_tree:
                 for j in right_tree:
                     root = TreeNode(root_val)
@@ -46,18 +47,19 @@ class Solution(object):
         :param n:
         :return:
         """
-        l = [i for i in range(1, n+1)]
+        l = [i for i in range(1, n + 1)]
         return self.gen_helper(l)
         pass
 
     def gen_helper(self, l):
         if len(l) == 0: return []
         key = ':'.join(list(map(lambda x: str(x), l)))
-        if key in self.mem: return self.mem[key]
+        if key in self.mem:
+            return self.mem[key]
         res = []
         for i in range(len(l)):
             lhs = self.gen_helper(l[:i])
-            rhs = self.gen_helper(l[i+1:])
+            rhs = self.gen_helper(l[i + 1:])
             if len(lhs) == 0 and len(rhs) == 0:
                 res.append(TreeNode(l[i]))
             elif len(lhs) == 0:
