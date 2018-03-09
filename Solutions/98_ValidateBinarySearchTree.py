@@ -67,6 +67,26 @@ class Solution(object):
         n_list.append(root)
         self.inorder(root.right, n_list, v_list)
 
+    def inorder_stack(self, root):
+        stack = []
+        node = root
+        while node and stack:
+            while node:
+                stack.append(node)
+                node = node.left
+            node = stack.pop()
+            print node.val
+            node = node.right
+
+    def morris_traversal(self, root):
+        """
+        Morris Traversal   Threader binary tree
+        A binary tree is threaded by making all right child pointers that would normally be pull point to the inorder
+        successor of the node(if it exists), and all left child pointers that would normally be null point to the inorder
+        predecessor of the node.
+        """
+
+
 
 if __name__ == '__main__':
     tree = TreeNode(2)
