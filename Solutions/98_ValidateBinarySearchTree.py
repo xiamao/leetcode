@@ -16,7 +16,7 @@ class Solution(object):
         """
         if not root:
             return True
-        return self.is_valid_helper(root, -2**31 - 1, 2**31 + 1)
+        return self.is_valid_helper(root, -2 ** 31 - 1, 2 ** 31 + 1)
 
     def is_valid_helper(self, root, mn, mx):
         if not root:
@@ -80,10 +80,20 @@ class Solution(object):
 
     def morris_traversal(self, root):
         """
-        Morris Traversal   Threader binary tree
+        Morris Traversal   Threaded binary tree
         A binary tree is threaded by making all right child pointers that would normally be pull point to the inorder
         successor of the node(if it exists), and all left child pointers that would normally be null point to the inorder
         predecessor of the node.
+        1、初始化指针cur 指向root
+        2、当cur不为空时
+            如果cur没有左子节点
+                打印出cur的值
+                将cur的指针指向其右子节点
+            反之
+              将pre指针指向cur的左子树中的最右子节点
+                若pre不存在右子节点
+                  将其右子节点指回cur
+                  cur指向其左子节点
         """
 
 
